@@ -22,9 +22,9 @@
   	<artifactId>apache</artifactId>
   	<version>13</version>
   </parent>
-  <groupId>log4j</groupId>
+  <groupId>qubole.log4j</groupId>
   <artifactId>apache-log4j-extras</artifactId>
-  <packaging>bundle</packaging>
+  <packaging>jar</packaging>
   <version>1.2.17</version>
   <name>Apache Extras™ for Apache log4j™.</name>
   <description>
@@ -37,6 +37,37 @@
     <system>Bugzilla</system>
     <url>https://issues.apache.org/bugzilla/buglist.cgi?product=Log4j&amp;component=Companions</url>
   </issueManagement>
+
+  <properties>
+    <distMgmtSnapshotsId>qubole-snapshots</distMgmtSnapshotsId>
+    <distMgmtSnapshotsName>Qubole Development Snapshot Repository</distMgmtSnapshotsName>
+    <distMgmtSnapshotsUrl>http://karma.qubole.net:4000/artifactory/libs-snapshot-local</distMgmtSnapshotsUrl>
+    <distMgmtStagingId>qubole-releases</distMgmtStagingId>
+    <distMgmtStagingName>Qubole Release Distribution Repository</distMgmtStagingName>
+    <distMgmtStagingUrl>http://karma.qubole.net:4000/artifactory/libs-release-local</distMgmtStagingUrl>
+
+    <!-- platform encoding override -->
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+  </properties>
+  
+  <distributionManagement>
+    <repository>
+      <id>${distMgmtStagingId}</id>
+      <name>${distMgmtStagingName}</name>
+      <url>${distMgmtStagingUrl}</url>
+    </repository>
+    <snapshotRepository>
+      <id>${distMgmtSnapshotsId}</id>
+      <name>${distMgmtSnapshotsName}</name>
+      <url>${distMgmtSnapshotsUrl}</url>
+    </snapshotRepository>
+    <site>
+      <id>apache.website</id>
+      <url>scpexe://people.apache.org/www/hadoop.apache.org/docs/r${project.version}</url>
+    </site>
+  </distributionManagement>
+  
   <ciManagement>
   		<system>Gump</system>
   		 <url>http://vmgump.apache.org/gump/public/logging-log4j-extras/logging-log4j-extras/index.html</url>
@@ -309,10 +340,4 @@
           <optional>true</optional>
       </dependency>
   </dependencies>
-  <distributionManagement>
-    <site>
-      <id>apache.website</id>
-      <url>scp://people.apache.org/www/logging.apache.org/log4j/extras</url>
-    </site>
-  </distributionManagement>
 </project>
